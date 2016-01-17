@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
 	public int playerCamNumber;
 	public int numPlayers;
+    public PlayerIndex playerIndexNum;
 
 	public Transform poi;
 	public Transform camTarget;
@@ -14,6 +16,37 @@ public class ThirdPersonCamera : MonoBehaviour
 
 	public bool shake = false;
 	public float shakeIntensity = 0.1f;
+    private Camera cam;
+
+    void Start()
+    {
+        //testing
+        numPlayers = 4;
+
+        cam = this.gameObject.GetComponent<Camera>();
+
+        if (numPlayers <= 1)
+        {
+            cam.rect = new Rect(0, 0, 1, 1);
+        }
+        else if (numPlayers == 2)
+        {
+            //Debug.Log("Setting Cam Rect");
+            cam.rect = new Rect(0, 0.5f*playerCamNumber-0.5f, 1, 0.5f);
+        }
+        else
+        {
+            if(playerCamNumber == 1)
+                cam.rect = new Rect(0, 0, 0.5f, 0.5f);
+            if (playerCamNumber == 2)
+                cam.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+            if (playerCamNumber == 3)
+                cam.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+            if (playerCamNumber == 4)
+                cam.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+        }
+        
+    }
 
 	void FixedUpdate()
 	{
