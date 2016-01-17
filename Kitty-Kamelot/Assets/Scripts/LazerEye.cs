@@ -10,7 +10,7 @@ public class LazerEye : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         eyeOrigin = this.gameObject.transform;
-        //StartCoroutine(Gattle());
+        StartCoroutine(Gattle());
 
     }
 
@@ -19,14 +19,12 @@ public class LazerEye : MonoBehaviour {
 	}
 
     IEnumerator Gattle() {
-        Instantiate(lazer, eyeOrigin.position, Quaternion.identity);
+        Instantiate(lazer, eyeOrigin.position + Vector3.right/2 - Vector3.up/2, transform.rotation);
         yield return new WaitForSeconds(0.1f);
-        Instantiate(lazer, eyeOrigin.position + Vector3.right/2, Quaternion.identity);
+        Instantiate(lazer, eyeOrigin.position, transform.rotation);
         yield return new WaitForSeconds(0.1f);
-        Instantiate(lazer, eyeOrigin.position - Vector3.right/2, Quaternion.identity);
+        Instantiate(lazer, eyeOrigin.position - Vector3.right/ 2 - Vector3.up / 2, transform.rotation);
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(Gattle());
-
-
     }
 }
