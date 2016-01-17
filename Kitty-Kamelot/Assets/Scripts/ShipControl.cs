@@ -73,6 +73,23 @@ public class ShipControl : MonoBehaviour
         playerCamera = playerCameraObj.GetComponent<Camera>();
         playerCameraObj.GetComponent<ThirdPersonCamera>().poi = this.transform;
         playerCameraObj.GetComponent<ThirdPersonCamera>().camTarget = this.transform;
+        playerCameraObj.GetComponent<ThirdPersonCamera>().playerIndexNum = playerIndexNum;
+        if (playerIndexNum == XInputDotNetPure.PlayerIndex.One)
+        {
+            playerCameraObj.GetComponent<ThirdPersonCamera>().playerCamNumber = 1;
+        }
+        else if (playerIndexNum == XInputDotNetPure.PlayerIndex.Two)
+        {
+            playerCameraObj.GetComponent<ThirdPersonCamera>().playerCamNumber = 2;
+        }
+        else if (playerIndexNum == XInputDotNetPure.PlayerIndex.Three)
+        {
+            playerCameraObj.GetComponent<ThirdPersonCamera>().playerCamNumber = 3;
+        }
+        else if (playerIndexNum == XInputDotNetPure.PlayerIndex.Four)
+        {
+            playerCameraObj.GetComponent<ThirdPersonCamera>().playerCamNumber = 4;
+        }
 
         shipRigid = this.gameObject.GetComponent<Rigidbody>();
         hoverPoint = transform.Find("HoverSensor").transform;
